@@ -1,0 +1,73 @@
+// Colors
+$white        : #fff;
+$almost_white : #e5e5e5;
+$grey_white   : #9d9d9e;
+$grey         : #666;
+$black        : #313436;
+$blacker      : #202123;
+$blackest     : #18191b;
+$blue         : #448ab5;
+$links        : #448ab5;
+$links_hover  : #2b6a91;
+$error_red    : #bf4049;
+
+// Breakpoints
+$mobile           : 380px;
+$tablet_portrait  : 768px;
+$tablet_paysage   : 1024px;
+$desktop          : 1180px;
+$widescreen       : 1500px;
+
+// Mixins
+@mixin hide-text {
+  overflow:hidden;
+  text-indent:-9000em;
+  display:block;
+}
+@mixin ellipsis {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+}
+@mixin box-shadow($top, $left, $blur, $size, $color, $inset: false) {
+  @if $inset {
+      -webkit-box-shadow:inset $top $left $blur $size $color;
+      -moz-box-shadow:inset $top $left $blur $size $color;
+      box-shadow:inset $top $left $blur $size $color;
+  } @else {
+      -webkit-box-shadow: $top $left $blur $size $color;
+      -moz-box-shadow: $top $left $blur $size $color;
+      box-shadow: $top $left $blur $size $color;
+  }
+}
+@mixin transition($type:all,$time:0.3s,$effect:ease-in-out,$delay:0s) {
+  -webkit-transition: $type $time $effect $delay;
+  -moz-transition: $type $time $effect $delay;
+  -ms-transition: $type $time $effect $delay;
+  -o-transition: $type $time $effect $delay;
+  transition: $type $time $effect $delay;
+}
+@mixin transform($type) {
+  -webkit-transform: $type;
+  -moz-transform: $type;
+  -ms-transform: $type;
+  -o-transform: $type;
+  transform: $type;
+}
+@mixin no-arrow-select() {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}

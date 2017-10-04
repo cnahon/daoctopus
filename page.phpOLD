@@ -1,0 +1,116 @@
+<?php
+/**
+ * The template for displaying all pages.
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages
+ * and that other 'pages' on your WordPress site will use a
+ * different template.
+ *
+ * @package WordPress
+ */
+
+get_header(); ?>
+
+
+
+
+
+
+
+<?php if ( have_rows( 'general' ) ): ?>
+	<?php while ( have_rows( 'general' ) ) : the_row(); ?>
+		<?php if ( get_row_layout() == 'texte' ) : 
+				include('bloc-texte.php');
+			 elseif ( get_row_layout() == 'texte__image' ) : 
+				include('bloc-texte-image.php');
+			 elseif ( get_row_layout() == 'image' ) : 
+			 	include('bloc-image.php');
+			 elseif ( get_row_layout() == 'pictos' ) : 
+			 	include('bloc-pictos.php');
+			 elseif ( get_row_layout() == 'slideshow' ) : 
+			 	include('bloc-slideshow.php');
+			 elseif ( get_row_layout() == 'caroussel' ) : 
+			 	include('bloc-caroussel.php');
+			 elseif ( get_row_layout() == 'partenaires' ) : 
+			 	include('bloc-partenaires.php');
+			 elseif ( get_row_layout() == 'gallerie' ) : ?>
+			<?php the_sub_field( 'type_de_galerie' ); ?>
+			<?php $liste_dimages_images = get_sub_field( 'liste_dimages' ); ?>
+			<?php if ( $liste_dimages_images ) :  ?>
+				<?php foreach ( $liste_dimages_images as $liste_dimages_image ): ?>
+					<a href="<?php echo $liste_dimages_image['url']; ?>">
+						<img src="<?php echo $liste_dimages_image['sizes']['thumbnail']; ?>" alt="<?php echo $liste_dimages_image['alt']; ?>" />
+					</a>
+				<p><?php echo $liste_dimages_image['caption']; ?></p>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			<?php the_sub_field( 'id' ); ?>
+			<?php the_sub_field( 'couleur_de_fond' ); ?>
+			<?php $image_de_fond = get_sub_field( 'image_de_fond' ); ?>
+			<?php if ( $image_de_fond ) { ?>
+				<img src="<?php echo $image_de_fond['url']; ?>" alt="<?php echo $image_de_fond['alt']; ?>" />
+			<?php } ?>
+		<?php elseif ( get_row_layout() == 'tableau' ) : ?>
+			<?php the_sub_field( 'nombre_de_colonne' ); ?>
+			<?php if ( have_rows( 'liste_dimages' ) ) : ?>
+				<?php while ( have_rows( 'liste_dimages' ) ) : the_row(); ?>
+					<?php the_sub_field( 'colonne_1' ); ?>
+					<?php the_sub_field( 'colonne_2' ); ?>
+					<?php the_sub_field( 'colonne_3' ); ?>
+					<?php the_sub_field( 'colonne_4' ); ?>
+					<?php the_sub_field( 'colonne_5' ); ?>
+					<?php the_sub_field( 'colonne_6' ); ?>
+					<?php the_sub_field( 'colonne_7' ); ?>
+					<?php the_sub_field( 'colonne_8' ); ?>
+					<?php the_sub_field( 'colonne_9' ); ?>
+					<?php the_sub_field( 'colonne_10' ); ?>
+				<?php endwhile; ?>
+			<?php else : ?>
+				<?php // no rows found ?>
+			<?php endif; ?>
+			<?php the_sub_field( 'id' ); ?>
+			<?php the_sub_field( 'couleur_de_fond' ); ?>
+			<?php $image_de_fond = get_sub_field( 'image_de_fond' ); ?>
+			<?php if ( $image_de_fond ) { ?>
+				<img src="<?php echo $image_de_fond['url']; ?>" alt="<?php echo $image_de_fond['alt']; ?>" />
+			<?php } ?>
+		<?php elseif ( get_row_layout() == 'onglets' ) : ?>
+			<?php if ( have_rows( 'liste_onglets' ) ) : ?>
+				<?php while ( have_rows( 'liste_onglets' ) ) : the_row(); ?>
+					<?php the_sub_field( 'titre' ); ?>
+					<?php the_sub_field( 'texte' ); ?>
+				<?php endwhile; ?>
+			<?php else : ?>
+				<?php // no rows found ?>
+			<?php endif; ?>
+			<?php the_sub_field( 'id' ); ?>
+			<?php the_sub_field( 'couleur_de_fond' ); ?>
+		<?php elseif ( get_row_layout() == 'accordeons' ) : ?>
+			<?php if ( have_rows( 'liste_accordeons' ) ) : ?>
+				<?php while ( have_rows( 'liste_accordeons' ) ) : the_row(); ?>
+					<?php the_sub_field( 'titre' ); ?>
+					<?php the_sub_field( 'texte' ); ?>
+				<?php endwhile; ?>
+			<?php else : ?>
+				<?php // no rows found ?>
+			<?php endif; ?>
+			<?php the_sub_field( 'id' ); ?>
+			<?php the_sub_field( 'couleur_de_fond' ); ?>
+			<?php $image_de_fond = get_sub_field( 'image_de_fond' ); ?>
+			<?php if ( $image_de_fond ) { ?>
+				<img src="<?php echo $image_de_fond['url']; ?>" alt="<?php echo $image_de_fond['alt']; ?>" />
+			<?php } ?>
+		<?php endif; ?>
+	<?php endwhile; ?>
+<?php else: ?>
+	<?php // no layouts found ?>
+<?php endif; ?>
+
+
+
+
+
+
+
+<?php get_footer(); ?>

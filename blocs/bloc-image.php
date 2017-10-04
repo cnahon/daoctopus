@@ -1,0 +1,2 @@
+<div class="bloc-image bloc-image-full" style="background-image:url('<?php $image = get_sub_field( 'image' ); if ( $image ) { echo $image['sizes']['full'];  } ?>');height:<?php echo $image['sizes']['full-height'] ?>px;">
+</div>
